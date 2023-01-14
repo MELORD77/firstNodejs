@@ -37,15 +37,15 @@ app.use(express.urlencoded({ extended: false }));
 //post books
 app.post("/api/books", (req, res) => {
   //   console.log(res);
-  res.json(books);
-  res.send(req);
+  res.header("Content-type", "application/json");
   const newbook = {
     id: uuid.v4,
     name: req.body.name,
     prise: req.body.prise,
   };
-
+  res.json(newbook);
   books.push(newbook);
+  res.send(newbook);
   //   console.log(res);
   //   res.json(books);
 });
@@ -61,10 +61,22 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //get by id
 app.get(`/api/books/:id`, (req, res) => {
+  res.header("Content-type", "application/json");
+
+  res.header("Accept", "application/json");
+
+  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+  res.header("Access-Control-Allow-Credentials", "true");
   res.json(books.filter((book) => book.id == req.params.id));
 });
 //get books
 app.get("/api/books", (req, res) => {
+  res.header("Content-type", "application/json");
+
+  res.header("Accept", "application/json");
+
+  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+  res.header("Access-Control-Allow-Credentials", "true");
   //   res.send(path.join(__dirname, "public", "index.html"));
   res.json(books);
 });

@@ -7,6 +7,14 @@
     <title>express</title>
   </head>
   <body>
+    <script>
+      fetch("http://localhost:3000/api/books")
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+    </script>
     <h1>hello express</h1>
+    <ul id="ul">
+      <li></li>
+    </ul>
   </body>
 </html>
